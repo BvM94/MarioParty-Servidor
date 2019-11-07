@@ -1,0 +1,14 @@
+Servidor
+- Escuchar siempre: en caso de que llegue algo -> evaluar -> resolver en base a eso -> comunicar a los clientes
+
+Cliente
+- Escuchar siempre: en caso de que llegue algo -> evaluar como dibujarlo -> dibujarlo -> y en caso de tomar una acción comunicarla al servidor
+
+
+
+
+Proyectos de ayuda
+
+https://github.com/manfredcamacho/ZombieRun
+
+https://github.com/matricali/ao4j-servidor

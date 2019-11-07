@@ -1,0 +1,57 @@
+DIMENCION DEL TABLERO
+5 5
+
+Casilla INICIO ( por cada casilla (x , y , direcciones(son 4))
+201000
+Casillas Desicion (primera linea cantidad, por cada casilla (x , y , direcciones(son 4))
+1
+421010
+
+Casillas Normales (primera linea cantidad, por cada casilla (x , y , direcciones(son 4))
+8
+301000
+410010
+430010
+320100
+020001
+040001
+010001
+
+Casillas Estrellas (primera linea cantidad, por cada casilla (x , y , direcciones(son 4))
+1
+241000
+
+Casillas Sumar o Restar monedas (primera linea cantidad, por cada casilla (x , y , direcciones(son 4) , cantidadMonedas)
+3
+441000 10
+221000 30
+030001 -5
+
+Casillas Paralizar (primera linea cantidad, por cada casilla (x , y , direcciones(son 4), turnosParalizado))
+5
+400010 1
+341000 2
+141000 1
+121000 2
+000100 1
+
+Conexion (primera linea cantidad, por conexion (x casilla, y casilla , x casilla anterior, ycasilla anterior) )
+0001
+1000
+2010
+3020
+4030
+4140
+4241
+4342
+4443
+3444
+2434
+1424
+0414
+3242
+2232
+1222
+0212
+0304
+0102
