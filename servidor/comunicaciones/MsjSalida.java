@@ -3,10 +3,9 @@ package comunicaciones;
 import java.io.Serializable;
 
 public class MsjSalida implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	private boolean respuesta;
 	private String detalleError;
 	
