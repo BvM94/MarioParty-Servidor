@@ -1,9 +1,11 @@
 package entities.casilla;
+import java.io.Serializable;
+
 import entities.Mapa;
 import entities.Personaje;
 import entities.threads.EsperarThread;
 
-public class Casilla {
+public class Casilla implements Serializable {
 	private int x;
 	private int y;
 	private boolean[] direcciones; // N,S,E,O

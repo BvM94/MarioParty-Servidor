@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import javax.swing.JOptionPane;
 import entities.Articulo;
 import entities.casilla.Casilla;
 
-public class Personaje implements Comparable<Personaje> {
+public class Personaje implements Serializable, Comparable<Personaje> {
 
 	private String nombre;
 	private List<Articulo> items;

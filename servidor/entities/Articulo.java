@@ -1,10 +1,11 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import entities.Personaje;
 
-public abstract class Articulo {
+public abstract class Articulo implements Serializable {
 	public String nombre; //nombre de articulo
 	public int efecto; //uno mismo o jugador rival
 

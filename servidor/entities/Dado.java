@@ -1,6 +1,8 @@
 package entities;
 
-public class Dado {
+import java.io.Serializable;
+
+public class Dado  implements Serializable {
 	
 	private int valorMax;
 	private int valorMin;

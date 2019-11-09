@@ -2,11 +2,12 @@ package entities;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.time.Instant;
 
 import javax.swing.Timer;
 
-public class Tiempo {
+public class Tiempo implements Serializable {
 
 	private Instant tiempo;
 	private Timer contador;

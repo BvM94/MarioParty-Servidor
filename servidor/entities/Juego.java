@@ -1,9 +1,10 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Juego {
+public class Juego implements Serializable {
 	
 	private Mapa mapa;
 	private List<Personaje> jugadores;

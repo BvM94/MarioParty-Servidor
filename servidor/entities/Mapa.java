@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,27 +24,27 @@ import entities.casilla.CasillaParalizar;
 import entities.casilla.CasillaSumarRestarMonedas;
 import entities.threads.EsperarThread;
 import servidor.Servidor;
-import ui.EscucharTeclaInterface;
-import ui.InformeFrame;
-import ui.MarioJFrame;
-import ui.MarioStatsFrame;
-import ui.TirarDadoFrame;
+//import ui.EscucharTeclaInterface;
+//import ui.InformeFrame;
+//import ui.MarioJFrame;
+//import ui.MarioStatsFrame;
+//import ui.TirarDadoFrame;
 
-public class Mapa {
+public class Mapa implements Serializable {
 
-	private Dado dado;
-	private Casilla[][] tablero;
-	private List<Personaje> jugadores = new LinkedList<Personaje>();
-	private List<Minijuego> minijuegos = new ArrayList<Minijuego>();
-	private int cantidadRondas;
-	private int estrellasVictoria = 5;
-	private Casilla casillaInicio;
+	 private Dado dado;
+	 private Casilla[][] tablero;
+	 private List<Personaje> jugadores = new LinkedList<Personaje>();
+	 private List<Minijuego> minijuegos = new ArrayList<Minijuego>();
+	 private int cantidadRondas;
+	 private int estrellasVictoria = 5;
+	 private Casilla casillaInicio;
 	//private MarioJFrame jFrame;
 	//private MarioStatsFrame statsFrame;
 	//private TirarDadoFrame dadoFrame;
 	//private InformeFrame infoFrame;
 	private int teclaPresionada = -1;
-	private Servidor servidor;
+	transient private Servidor servidor;
 
 	// Constructor , aca comienza la partida
 	public Mapa(List<Jugador> listaJug, int cantidadRondas, Servidor servidor) throws FileNotFoundException {
@@ -281,7 +282,8 @@ public class Mapa {
 		// tira el dado
 		System.out.println("El jugador " + personaje.getNombre() + " tira el dado");
 		//dadoFrame = new TirarDadoFrame(personaje, this.dado);
-		int valorDado = 0;
+		int valorDado = this.dado.tirarDado();
+		
 		/*while (dadoFrame.getValor() == -1) {
 			new EsperarThread(50).run();
 		}

@@ -73,6 +73,7 @@ public class HiloDeCliente extends Thread {
 
 	private void altaJugador(AltaJugador peticion) throws FileNotFoundException {
 		System.out.println(peticion.getNick() + peticion.getColor().toString());
+
 		servidor.getJugadores().add(new Jugador(peticion.getNick(), peticion.getColor(), clientSocket, in, out));
 		preguntarComienzoJuego();
 	}

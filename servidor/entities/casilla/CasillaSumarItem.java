@@ -1,11 +1,13 @@
 package entities.casilla;
 
+import java.io.Serializable;
+
 import entities.Articulo;
 import entities.Coinado;
 import entities.HongoDash;
 import entities.Personaje;
 
-public class CasillaSumarItem extends Casilla {
+public class CasillaSumarItem extends Casilla implements Serializable {
 
 	public CasillaSumarItem(int x, int y, boolean[] direcciones) {
 		super(x, y, direcciones);

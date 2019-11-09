@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Sala {
+public class Sala implements Serializable  {
 	
 	private String Nombre; 
 	private List<Jugador> jugadores;

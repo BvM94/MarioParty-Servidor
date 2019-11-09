@@ -4,9 +4,10 @@ package entities;
 import java.awt.Color;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 
-public class Jugador {
+public class Jugador implements Serializable  {
 	
 	private String nickName;
 	private String estado;

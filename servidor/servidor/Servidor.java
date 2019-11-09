@@ -73,7 +73,9 @@ public class Servidor {
 		Mapa mapa = new Mapa(jugadores, 10, this);
 		MsjMapa msjMapa = new MsjMapa(mapa);
 		for (Jugador jugador : jugadores) {
+			jugador.getOut().reset();
 			jugador.getOut().writeObject(msjMapa);
+			jugador.getOut().flush();
 		}
 
 	}
@@ -81,7 +83,9 @@ public class Servidor {
 	public void mandarMensaje(Object object) {
 		for (Jugador jugador : jugadores) {
 			try {
+				jugador.getOut().reset();
 				jugador.getOut().writeObject(object);
+				jugador.getOut().flush();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Carrera extends Minijuego {
+public class Carrera extends Minijuego implements Serializable  {
 
 
 
