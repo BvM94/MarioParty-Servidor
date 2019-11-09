@@ -1,6 +1,10 @@
 package entities;
 
+
 import java.awt.Color;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class Jugador {
 	
@@ -8,11 +12,20 @@ public class Jugador {
 	private String estado;
 	private String clave;
 	private Color color;
+	private Socket socket;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
 	
-	public Jugador(String nick, Color color) {
+	
+	
+	public Jugador(String nick, Color color,Socket socket, ObjectInputStream in, ObjectOutputStream out) {
 		this.nickName = nick;
-		//this.clave = clave;
 		this.color = color;
+		this.socket = socket;
+		this.in = in;
+		this.out = out;
+		
+		
 	}
 
 	public Color getColor() {

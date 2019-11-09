@@ -1,7 +1,11 @@
 package servidor;
 
+import java.io.FileNotFoundException;
 import java.net.*;
 import java.util.*;
+
+import entities.Jugador;
+import entities.Mapa;
 
 public class Servidor {
 
@@ -13,7 +17,7 @@ public class Servidor {
 
 	// ARRAYLIST DE LAS PERSONAS QUE SE CONECTAN A LA PARTIDA
 	private ArrayList<Socket> usuarios;
-
+	private ArrayList<Jugador>jugadores;
 	// FRAME PARA LA VISUALIZACION DEL SERVER
 	private ServidorFrame frame;
 
@@ -21,7 +25,7 @@ public class Servidor {
 		this.frame = f;
 
 		usuarios = new ArrayList<Socket>();
-
+jugadores=new ArrayList<Jugador>();
 		try {
 			// GENERO EL SERVERSOCKET
 			sSocket = new ServerSocket(PUERTO);
@@ -36,7 +40,7 @@ public class Servidor {
 
 				frame.mostrarMensajeFrame("Se conecto: " + clientSocket.getInetAddress().getHostAddress());
 				usuarios.add(clientSocket);
-				HiloDeCliente hilo = new HiloDeCliente(clientSocket, usuarios, frame);
+				HiloDeCliente hilo = new HiloDeCliente(clientSocket, usuarios, frame,this);
 				hilo.start();
 				// MANDO A EJECUTAR EL HILO
 				// VUELVO AL PRINCIPIO DEL WHILE A EMPEZAR A ESCUCHAR DE NUEVO
@@ -47,12 +51,33 @@ public class Servidor {
 		}
 	}
 
+	public ArrayList<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	
+	public void verComienzoJuego() throws FileNotFoundException {
+		if(jugadores.size()==3) {
+			Mapa juegoSuperMario=new Mapa(jugadores, 20);
+		}
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		Servidor sv = new Servidor(new ServidorFrame());
 
 	}
+	
 
+	
+	
 	/////////////////// METODOS PARA EL MANEJO DE BASE DE DATOS/////////
 	public void desconectar() {
 		// MySQLConnection.close();

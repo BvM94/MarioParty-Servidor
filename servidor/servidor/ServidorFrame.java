@@ -1,5 +1,6 @@
 package servidor;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,7 +18,7 @@ public class ServidorFrame extends JFrame {
 	private JLabel titulo;
 
 	public ServidorFrame() {
-		setTitle("SERVIDOR ZOMBIE RUN");
+		setTitle("SERVIDOR MARTY MCFLY");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 468);
 		contentPane = new JPanel();
