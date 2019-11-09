@@ -1,4 +1,4 @@
-package mensajes;
+package comunicaciones;
 
 import java.io.Serializable;
 import java.util.ArrayList;

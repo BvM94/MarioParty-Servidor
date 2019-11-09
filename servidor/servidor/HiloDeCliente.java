@@ -8,7 +8,6 @@ import java.net.*;
 import java.util.*;
 
 import comunicaciones.*;
-
 import entities.Jugador;
 
 public class HiloDeCliente extends Thread {
