@@ -62,7 +62,7 @@ public class Servidor {
 	}
 
 	public void verComienzoJuego() throws IOException {
-		if (jugadores.size() == 3) {
+		if (jugadores.size() == 1) {
 			// Mapa juegoSuperMario=new Mapa(jugadores, 20);
 			comenzarJuego();
 		}
@@ -71,12 +71,12 @@ public class Servidor {
 	private void comenzarJuego() throws IOException, FileNotFoundException {
 		// Iniciar mapa
 		Mapa mapa = new Mapa(jugadores, 10, this);
-		MsjMapa msjMapa = new MsjMapa(mapa);
-		for (Jugador jugador : jugadores) {
-			jugador.getOut().reset();
-			jugador.getOut().writeObject(msjMapa);
-			jugador.getOut().flush();
-		}
+//		MsjMapa msjMapa = new MsjMapa(mapa);
+//		for (Jugador jugador : jugadores) {
+//			jugador.getOut().reset();
+//			jugador.getOut().writeObject(msjMapa);
+//			jugador.getOut().flush();
+//		}
 
 	}
 	

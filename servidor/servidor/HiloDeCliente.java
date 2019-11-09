@@ -59,8 +59,8 @@ public class HiloDeCliente extends Thread {
 				// se agrega un case
 				switch (peticion.getClass().getSimpleName()) {
 				case "AltaJugador":
-					altaJugador((AltaJugador) peticion);
 					System.out.println("Recibido");
+					altaJugador((AltaJugador) peticion);
 					break;
 					
 				}

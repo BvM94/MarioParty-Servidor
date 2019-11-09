@@ -3,7 +3,6 @@ import java.io.Serializable;
 
 import entities.Mapa;
 import entities.Personaje;
-import entities.threads.EsperarThread;
 
 public class Casilla implements Serializable {
 	private int x;
@@ -114,14 +113,15 @@ public class Casilla implements Serializable {
 		
 		//setea al personaje en la casilla temporalmente para eliminar bug
 		setPersonajePosicionado(personaje);
-		while(mapa.getTeclaPresionada() == -1) {
-			titilar(mapa, true, personaje);
-			new EsperarThread(50).run();
-			titilar(mapa, false, personaje);
-		}
-		desocuparCasilla(personaje);
-		int teclaPresionada = mapa.getTeclaPresionada();
-		mapa.limpiarTeclaPresionada();
+//		while(mapa.getTeclaPresionada() == -1) {
+//			titilar(mapa, true, personaje);
+//			new EsperarThread(50).run();
+//			titilar(mapa, false, personaje);
+//		}
+//		desocuparCasilla(personaje);
+//		int teclaPresionada = mapa.getTeclaPresionada();
+		int teclaPresionada =0;
+//		mapa.limpiarTeclaPresionada();
 		return teclaPresionada;	
 	}
 

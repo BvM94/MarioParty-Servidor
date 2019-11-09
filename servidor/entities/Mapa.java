@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
 
-
+import comunicaciones.MsjMapa;
 import entities.Dado;
 import entities.Minijuego;
 import entities.Personaje;
@@ -98,7 +98,7 @@ public class Mapa implements Serializable {
 		// MAC
 		String Path = "recursos/Tableros/";
 		// String Path = "..\\..\\..\\recursos\\Tableros\\";
-		Scanner sc = new Scanner(new File(Path + "tablero3.txt"));
+		Scanner sc = new Scanner(new File(Path + "tablero1.txt"));
 
 		this.tablero = new Casilla[sc.nextInt()][sc.nextInt()];
 
@@ -193,6 +193,7 @@ public class Mapa implements Serializable {
 	}
 
 	public void inicioJuego() {
+		servidor.mandarMensaje(new MsjMapa(this));
 		// Se dibuja la ventana
 
 		/*jFrame = new MarioJFrame(tablero, tablero.length, this);
@@ -221,7 +222,7 @@ public class Mapa implements Serializable {
 	}
 
 	public void redibujar() {
-		servidor.mandarMensaje(tablero);
+		servidor.mandarMensaje(new MsjMapa(this));
 		//long tiempo = 500;
 
 		/*jFrame.redibujar(tablero);
@@ -271,8 +272,7 @@ public class Mapa implements Serializable {
 		int item = -1;
 		if (personaje.getItems().size() > 0) {
 			//infoFrame.setEstado("seleccion");
-			int respItem = JOptionPane.showConfirmDialog(null, "�Prefiere usar un item en este turno?", "Alerta!",
-					JOptionPane.YES_NO_OPTION);
+			int respItem = JOptionPane.showConfirmDialog(null, "�Prefiere usar un item en este turno?", "Alerta!",				JOptionPane.YES_NO_OPTION);
 			if (respItem == 0) {
 				// Seleccionar item
 				item = personaje.elegirItem();
