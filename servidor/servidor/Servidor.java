@@ -62,8 +62,12 @@ public class Servidor {
 	}
 
 	public void verComienzoJuego() throws IOException {
+<<<<<<< HEAD
 		if (jugadores.size() == 1) {
 			// Mapa juegoSuperMario=new Mapa(jugadores, 20);
+=======
+		if (jugadores.size() == 3) {
+>>>>>>> c2ece720c336f24d4d867a47d97212074b6d8830
 			comenzarJuego();
 		}
 	}
@@ -87,7 +91,7 @@ public class Servidor {
 				jugador.getOut().writeObject(object);
 				jugador.getOut().flush();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
@@ -99,8 +103,6 @@ public class Servidor {
 
 	}
 
-	/////////////////// METODOS PARA EL MANEJO DE BASE DE DATOS/////////
 	public void desconectar() {
-		// MySQLConnection.close();
 	}
 }

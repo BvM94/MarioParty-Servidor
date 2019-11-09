@@ -14,14 +14,12 @@ public class AltaJugador implements Serializable {
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	
-	
 	public AltaJugador(String nick, Color color) {
 		super();
 		this.nick = nick;
 		this.color = color;
 
 	}
-
 
 	public String getNick() {
 		return nick;
@@ -71,8 +69,5 @@ public class AltaJugador implements Serializable {
 	public void setOut(ObjectOutputStream out) {
 		this.out = out;
 	}
-	
-	
-	
 	
 }
