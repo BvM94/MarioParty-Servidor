@@ -52,4 +52,22 @@ public class Jugador {
 		this.estado = "Listo";
 	}
 
+	public ObjectInputStream getIn() {
+		return in;
+	}
+
+	public void setIn(ObjectInputStream in) {
+		this.in = in;
+	}
+
+	public ObjectOutputStream getOut() {
+		return out;
+	}
+
+	public void setOut(ObjectOutputStream out) {
+		this.out = out;
+	}
+	
+	
+
 }

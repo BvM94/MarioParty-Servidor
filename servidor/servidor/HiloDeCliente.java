@@ -8,6 +8,7 @@ import java.net.*;
 import java.util.*;
 
 import comunicaciones.*;
+
 import entities.Jugador;
 
 public class HiloDeCliente extends Thread {
@@ -61,7 +62,7 @@ public class HiloDeCliente extends Thread {
 					altaJugador((AltaJugador) peticion);
 					System.out.println("Recibido");
 					break;
-			
+					
 				}
 
 			}
@@ -77,7 +78,13 @@ public class HiloDeCliente extends Thread {
 	}
 
 	private void preguntarComienzoJuego() throws FileNotFoundException {
-		servidor.verComienzoJuego();
+		try {
+			servidor.verComienzoJuego();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//avisar a los clientes
 	}
 
 	// Lo dejo para que nos guiemos como ejemplo

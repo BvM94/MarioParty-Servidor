@@ -22,14 +22,14 @@ import entities.casilla.CasillaGanarEstrella;
 import entities.casilla.CasillaParalizar;
 import entities.casilla.CasillaSumarRestarMonedas;
 import entities.threads.EsperarThread;
-
+import servidor.Servidor;
 import ui.EscucharTeclaInterface;
 import ui.InformeFrame;
 import ui.MarioJFrame;
 import ui.MarioStatsFrame;
 import ui.TirarDadoFrame;
 
-public class Mapa implements EscucharTeclaInterface {
+public class Mapa {
 
 	private Dado dado;
 	private Casilla[][] tablero;
@@ -38,16 +38,18 @@ public class Mapa implements EscucharTeclaInterface {
 	private int cantidadRondas;
 	private int estrellasVictoria = 5;
 	private Casilla casillaInicio;
-	private MarioJFrame jFrame;
-	private MarioStatsFrame statsFrame;
-	private TirarDadoFrame dadoFrame;
-	private InformeFrame infoFrame;
+	//private MarioJFrame jFrame;
+	//private MarioStatsFrame statsFrame;
+	//private TirarDadoFrame dadoFrame;
+	//private InformeFrame infoFrame;
 	private int teclaPresionada = -1;
+	private Servidor servidor;
 
 	// Constructor , aca comienza la partida
-	public Mapa(List<Jugador> listaJug, int cantidadRondas) throws FileNotFoundException {
+	public Mapa(List<Jugador> listaJug, int cantidadRondas, Servidor servidor) throws FileNotFoundException {
 		this.cantidadRondas = cantidadRondas;
 		this.dado = new Dado(1, 6);
+		this.servidor = servidor;
 
 		rellenarCasillas();
 
@@ -192,9 +194,9 @@ public class Mapa implements EscucharTeclaInterface {
 	public void inicioJuego() {
 		// Se dibuja la ventana
 
-		jFrame = new MarioJFrame(tablero, tablero.length, this);
+		/*jFrame = new MarioJFrame(tablero, tablero.length, this);
 		statsFrame = new MarioStatsFrame(jugadores, jugadores.size());
-		infoFrame = new InformeFrame(jugadores,jugadores.size());
+		infoFrame = new InformeFrame(jugadores,jugadores.size());*/
 		// Aca se van a jugar las rondas hasta ver quien gana
 		// rondas del juego
 		for (int i = 0; i < cantidadRondas; i++) {
@@ -202,7 +204,7 @@ public class Mapa implements EscucharTeclaInterface {
 			for (Personaje personaje : jugadores) {
 				System.out.println();
 				System.out.println("TURNO JUGADOR: " + personaje.getNombre());
-				infoFrame.setJugAct(personaje);
+				//infoFrame.setJugAct(personaje);
 				System.out.println();
 				this.iniciaTurno(personaje);
 			}
@@ -218,12 +220,14 @@ public class Mapa implements EscucharTeclaInterface {
 	}
 
 	public void redibujar() {
-		long tiempo = 500;
+		servidor.mandarMensaje(tablero);
+		//long tiempo = 500;
 
-		jFrame.redibujar(tablero);
+		/*jFrame.redibujar(tablero);
 		statsFrame.redibujar(jugadores);
-		infoFrame.redibujar(jugadores);
-		new EsperarThread(tiempo).run();
+		infoFrame.redibujar(jugadores);*/
+		//new EsperarThread(tiempo).run();
+		
 	}
 
 	public void definirPosiciones() {
@@ -261,12 +265,12 @@ public class Mapa implements EscucharTeclaInterface {
 
 	private void iniciaTurno(Personaje personaje) {
 		// usa item
-		infoFrame.setEstado("com");
-		infoFrame.actLabel();
+		/*infoFrame.setEstado("com");
+		infoFrame.actLabel();*/
 		int item = -1;
 		if (personaje.getItems().size() > 0) {
-			infoFrame.setEstado("seleccion");
-			int respItem = JOptionPane.showConfirmDialog(null, "¿Prefiere usar un item en este turno?", "Alerta!",
+			//infoFrame.setEstado("seleccion");
+			int respItem = JOptionPane.showConfirmDialog(null, "ï¿½Prefiere usar un item en este turno?", "Alerta!",
 					JOptionPane.YES_NO_OPTION);
 			if (respItem == 0) {
 				// Seleccionar item
@@ -276,23 +280,23 @@ public class Mapa implements EscucharTeclaInterface {
 		}
 		// tira el dado
 		System.out.println("El jugador " + personaje.getNombre() + " tira el dado");
-		dadoFrame = new TirarDadoFrame(personaje, this.dado);
+		//dadoFrame = new TirarDadoFrame(personaje, this.dado);
 		int valorDado = 0;
-		while (dadoFrame.getValor() == -1) {
+		/*while (dadoFrame.getValor() == -1) {
 			new EsperarThread(50).run();
 		}
 		valorDado = dadoFrame.getValor();
 		dadoFrame.dispose();
 		infoFrame.setEstado("avanza");
 		infoFrame.setValor(valorDado);
-		infoFrame.actLabel();
+		infoFrame.actLabel();*/
 		System.out.println("El jugador " + personaje.getNombre() + " ha sacado " + valorDado);
 		// Mostrar Dado
 
 		// avanza
 		personaje.avanzar(valorDado, this);
-		infoFrame.setEstado("cas");
-		infoFrame.actLabel();
+		/*infoFrame.setEstado("cas");
+		infoFrame.actLabel();*/
 	}
 
 	public void finRonda() {
@@ -358,23 +362,9 @@ public class Mapa implements EscucharTeclaInterface {
 
 	public void escucharTeclas() {
 
-		jFrame.escucharTeclas();
+		//jFrame.escucharTeclas();
 
 	}
 
-	@Override
-	public void teclaPresionada(int tecla) {
-		this.teclaPresionada = tecla;
-	}
-
-	@Override
-	public int getTeclaPresionada() {
-		return teclaPresionada;
-	}
-
-	@Override
-	public void limpiarTeclaPresionada() {
-		teclaPresionada = -1;
-	}
 
 }

@@ -1,9 +1,11 @@
 package servidor;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 
+import comunicaciones.MsjMapa;
 import entities.Jugador;
 import entities.Mapa;
 
@@ -17,7 +19,7 @@ public class Servidor {
 
 	// ARRAYLIST DE LAS PERSONAS QUE SE CONECTAN A LA PARTIDA
 	private ArrayList<Socket> usuarios;
-	private ArrayList<Jugador>jugadores;
+	private ArrayList<Jugador> jugadores;
 	// FRAME PARA LA VISUALIZACION DEL SERVER
 	private ServidorFrame frame;
 
@@ -25,7 +27,7 @@ public class Servidor {
 		this.frame = f;
 
 		usuarios = new ArrayList<Socket>();
-jugadores=new ArrayList<Jugador>();
+		jugadores = new ArrayList<Jugador>();
 		try {
 			// GENERO EL SERVERSOCKET
 			sSocket = new ServerSocket(PUERTO);
@@ -40,7 +42,7 @@ jugadores=new ArrayList<Jugador>();
 
 				frame.mostrarMensajeFrame("Se conecto: " + clientSocket.getInetAddress().getHostAddress());
 				usuarios.add(clientSocket);
-				HiloDeCliente hilo = new HiloDeCliente(clientSocket, usuarios, frame,this);
+				HiloDeCliente hilo = new HiloDeCliente(clientSocket, usuarios, frame, this);
 				hilo.start();
 				// MANDO A EJECUTAR EL HILO
 				// VUELVO AL PRINCIPIO DEL WHILE A EMPEZAR A ESCUCHAR DE NUEVO
@@ -59,25 +61,40 @@ jugadores=new ArrayList<Jugador>();
 		this.jugadores = jugadores;
 	}
 
-	
-	public void verComienzoJuego() throws FileNotFoundException {
-		if(jugadores.size()==3) {
-			Mapa juegoSuperMario=new Mapa(jugadores, 20);
+	public void verComienzoJuego() throws IOException {
+		if (jugadores.size() == 3) {
+			// Mapa juegoSuperMario=new Mapa(jugadores, 20);
+			comenzarJuego();
 		}
 	}
+
+	private void comenzarJuego() throws IOException, FileNotFoundException {
+		// Iniciar mapa
+		Mapa mapa = new Mapa(jugadores, 10, this);
+		MsjMapa msjMapa = new MsjMapa(mapa);
+		for (Jugador jugador : jugadores) {
+			jugador.getOut().writeObject(msjMapa);
+		}
+
+	}
 	
-	
-	
-	
+	public void mandarMensaje(Object object) {
+		for (Jugador jugador : jugadores) {
+			try {
+				jugador.getOut().writeObject(object);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		Servidor sv = new Servidor(new ServidorFrame());
 
 	}
-	
 
-	
-	
 	/////////////////// METODOS PARA EL MANEJO DE BASE DE DATOS/////////
 	public void desconectar() {
 		// MySQLConnection.close();
